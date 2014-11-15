@@ -46,7 +46,7 @@ router.post("/downpage", function(request, postresponse){
 		//the request starts
 		var request = https.request(options, function(response){
 
-			//checking if repository really exists
+			//checking if repository exists
 			if(response.statusCode == 200){
 
 			//adding response data chunks on fileData String
