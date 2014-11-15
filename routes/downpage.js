@@ -18,9 +18,6 @@ var myheader = {	'User-Agent' : 'johnvarv',
 };
 
 
-//using body-parser middleware for parsing JSON response from posting the form
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
 
 
 router.post("/downpage", function(request, postresponse){
