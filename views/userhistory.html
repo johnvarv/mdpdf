@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Files</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="main.css" rel="stylesheet">
+
+  </head>
+  <body class="text-center">
+    <div class="col-sm-3 col-md-2 col-md-offset-10">
+        <div class="container-fluid">
+          <p>Hello <%= username%>,</p>
+          <a href="/index"><button class="btn">Convert</button></a>
+          <a href="/logout"><button class="btn">Logout</button></a>
+        </div>
+    </div>
+
+    <h1><%= msg %></h1>
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+    
+    <form action="userdldel" method=POST>
+      <p>User Files</p>
+
+      <select name="fileslist" class="form-control">
+        <!--Using ejs template to create a dropdown menu which includes the user's stored files-->
+        <% for(i = 0; i < files.length; i++){ %>
+        <option value=<%= files[i] %>> <%= files[i] %> </option>
+        <% } %>
+      </select>
+      </br>
+      <button class="btn btn-primary" type="sumbit" id="fdownload" name="fdownload" value=true>Download</button>
+      <button class="btn btn-danger" type="sumbit" name="fdelete" value=true>Delete</button>
+      <button class="btn btn-danger" type="sumbit" name="fdeleteall">Delete All</button>
+      
+    </form>
+    
+    </div>
+    
+  </body>
+</html>

@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="main.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <h1>MD to PDF Converter</h1>
-    
+    <div class="col-sm-3 col-md-2 col-md-offset-10">
+        <div class="container-fluid">
+          <p>Hello <%= username%>,</p>
+          <a href="/userhistory"><button class="btn">My Files</button></a>
+          <a href="/logout"><button class="btn">Logout</button></a>
+        </div>
+    </div>
+   <p> <font size="4" color="red"><%= msg %></font> </p>
 	<p>Paste a GitHub repository URL</p>
 <div class="col-sm-6 col-md-4 col-md-offset-4">
 	<form method="post" action="downpage">
 
 		<input type="text" name="myurl" placeholder="Url..." class="form-control" >
+    </br>
 		<button type="submit" class="btn btn-primary">Convert</button>
 
 	</form>
 </div>
+
   </body>
 </html>
