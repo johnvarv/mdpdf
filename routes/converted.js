@@ -134,7 +134,7 @@ router.post("/converted", function(request, response){
 
 		  			//empting fileData string and deleting temp.md
 		  			fileData='';
-		  			// fs.unlinkSync("public/files/temp.md");
+		  			fs.unlinkSync("public/files/temp.md");
 		  			
 		  			console.log("Creating PDF file");
 
