@@ -3,7 +3,7 @@ exports.header = null
 
 exports.footer =  {
   contents: function(pageNum, numPages) {
-    return "<footer> <span style='float:right'>" + pageNum + " / " + numPages + "</span></footer>"
+    return "<footer>  <span style='float:right'>" + pageNum + " / " + numPages + "</span></footer>"
   },
   height: '1cm'
 }

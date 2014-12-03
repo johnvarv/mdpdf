@@ -28,7 +28,6 @@ router.get("/downloadfile", function(request, response){
 	//if there is no session username redirects to login
 	if(!username)
 		response.redirect("/")
-	console.log(pdf_name);
 	//storing the user's folder path
 	var filepath = "./public/files/" + username + "/";
 

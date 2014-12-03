@@ -32,8 +32,10 @@ router.use(session({
     saveUninitialized: false
 }));
 
+
+
 //accessing route with get
-router.get("/downpage", function(request, response){
+router.get("/converted", function(request, response){
 
 	//storing session username
 	username = request.session.username;
@@ -48,10 +50,11 @@ router.get("/downpage", function(request, response){
 })
 
 //downpage route
-router.post("/downpage", function(request, response){
+router.post("/converted", function(request, response){
 
 	//storing username
 	username = request.session.username;
+
 
 	//storing given URL to variable
 	repoURL = request.body.myurl;
@@ -124,20 +127,25 @@ router.post("/downpage", function(request, response){
 		  			.pipe(markdownpdf({ runningsPath: __dirname + '/runnings.js'}))
 		  			.pipe(fs.createWriteStream("public/files/" + username  + "/" + pdf_name + ".pdf"));
 		  			
+
+					// markdownpdf({ runningsPath: __dirname + '/runnings.js',
+		  	// 						preProcessHtml: preProcessHtml
+		  	// 					}).from("public/files/temp.md").to("public/files/" + username  + "/" + pdf_name + ".pdf");
+
 		  			//empting fileData string and deleting temp.md
 		  			fileData='';
-		  			fs.unlinkSync("public/files/temp.md");
+		  			// fs.unlinkSync("public/files/temp.md");
 		  			
 		  			console.log("Creating PDF file");
 
 		  			//rendering downpage.html
-					response.render("downpage");
+					response.render("converted");
 				});
 					
 			}
 			//https response returns error status code
 			else{
-				response.render("index",{username: username, msg: "Invalid Github repository URL or not existed README.md"});
+				response.render("index", {username: username, msg: "Invalid Github repository URL or not existed README.md"});
 				
 			}
 		
@@ -147,7 +155,7 @@ router.post("/downpage", function(request, response){
 		https_request.end();	
 	}
 
-//end of downpage route	
+//end of route	
 });
 
 

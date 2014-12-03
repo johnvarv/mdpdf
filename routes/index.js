@@ -10,7 +10,7 @@ var crypto = require("crypto");
 //variables for password encryption
 var length = 64;
 var iterations = 12000;
-
+var username;
 //cookie-parser middleware to store session to cookie
 router.use(cookieParser("asdf"));
 
@@ -38,7 +38,7 @@ router.get("/index", function(request, response){
 router.post("/index", function(request, response){
 	
 	//defining given username and password
-	var username = request.body.username;
+	username = request.body.username;
 	var password = request.body.password;
 	var encrypted_pass;
 
@@ -70,11 +70,10 @@ router.post("/index", function(request, response){
 			}
 		
 		});
-		
+	
  	});
 
 	
 });
-
 
 module.exports = router;
