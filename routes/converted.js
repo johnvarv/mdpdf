@@ -126,11 +126,6 @@ router.post("/converted", function(request, response){
 					fs.createReadStream("public/files/temp.md")
 		  			.pipe(markdownpdf({ runningsPath: __dirname + '/runnings.js'}))
 		  			.pipe(fs.createWriteStream("public/files/" + username  + "/" + pdf_name + ".pdf"));
-		  			
-
-					// markdownpdf({ runningsPath: __dirname + '/runnings.js',
-		  	// 						preProcessHtml: preProcessHtml
-		  	// 					}).from("public/files/temp.md").to("public/files/" + username  + "/" + pdf_name + ".pdf");
 
 		  			//empting fileData string and deleting temp.md
 		  			fileData='';
