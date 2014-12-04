@@ -26,12 +26,14 @@ router.get("/userhistory", function(request, response){
 
  	if(!username)
  		response.redirect("/");
-
- 	//reading the user's folder and storing it in user_files array
-	user_files = fs.readdirSync("public/files/" + username);
+ 	else{
+ 		//reading the user's folder and storing it in user_files array
+		user_files = fs.readdirSync("public/files/" + username);
 	
-	//rendering userhistory with locals the user's file list array
-	response.render("userhistory.html", {username: username,  msg: "", files: user_files})
+		//rendering userhistory with locals the user's file list array
+		response.render("userhistory.html", {username: username,  msg: "", files: user_files})
+ 	}
+ 	
 		
 });
 

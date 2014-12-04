@@ -23,7 +23,7 @@ app.use(session({
 
 
 //defining routes
-var downpage = require("./routes/downpage");
+var converted = require("./routes/converted");
 var downloadfile = require("./routes/downloadfile");
 var login = require("./routes/login");
 var signup = require("./routes/signup");
@@ -49,37 +49,33 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public/css"));
 app.use(express.static(__dirname + "/public"))
 
-
 //All routes
-//getting login.html
-app.get("/", login);
+//intitial route
+app.use(login);
 
-//user logged in and rendering index.html
-app.post("/index", index);
-app.get("/index", index);
+//user index page
+app.use(index);
 
-//user created and rendering login
-app.post("/created", created);
+//rendering signup.html
+app.use(signup);
 
-//user signup
-app.get("/signup", signup);
-
-//posting donwpage.html
-app.post("/downpage", downpage);
-app.get("/downpage", downpage);
+//convert the pdf file
+app.use(converted);
 
 //downloading converted pdf
-app.get("/downloadfile", downloadfile);
+app.use(downloadfile);
 
 //user history page
-app.get("/userhistory", userhistory);
+app.use(userhistory);
 
 //user download, delete and delete all files route
-app.post("/userdldel", userdldel);
-app.get("/userdldel", userdldel);
+app.use(userdldel);
 
-//user logout and session destroyed
-app.get("/logout", logout);
+//user and user folder created. password encrytion
+app.use(created);
+
+//user log out. destroying session.
+app.use(logout);
 
 //defining listening port for the web server
 app.listen(3000);

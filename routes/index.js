@@ -47,30 +47,30 @@ router.post("/index", function(request, response){
 
 		if(!user)
 			response.render("login", {reg_msg : "", login_msg : "Username Not Found"});
-		//storing the user salt
-		var salt = user.salt;
+		
+		else{
+			//storing the user salt
+			var salt = user.salt;
 
-		//creating the encrypted pass once again with the given user salt,same length and iterations
-		encrypted_pass = crypto.pbkdf2Sync(password, salt, iterations, length);
+			//creating the encrypted pass once again with the given user salt,same length and iterations
+			encrypted_pass = crypto.pbkdf2Sync(password, salt, iterations, length);
 
-		//transforming encrypted user password to hexademical String
-		encrypted_pass = encrypted_pass.toString("hex");
+			//transforming encrypted user password to hexademical String
+			encrypted_pass = encrypted_pass.toString("hex");
 
-		//comparing the encrypted password
-		users.findOne({password: encrypted_pass}, function(err, user) {
+			//comparing the encrypted password
+			if(user.password == encrypted_pass){
 
-			if(!user){
-			response.render("login", {reg_msg : "", login_msg : "Password Incorect. Please try again"});
-			}
-			else{
 				//storing and saving username to session variable username	
 				request.session.username = username;
 				request.session.save(function(error){}); 
 				response.render("index", {username: username, msg: ""});
 			}
-		
-		});
-	
+			else{
+				response.render("login", {reg_msg : "", login_msg : "Password Incorect. Please try again"});
+			}
+		}
+
  	});
 
 	

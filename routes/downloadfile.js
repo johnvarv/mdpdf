@@ -28,16 +28,20 @@ router.get("/downloadfile", function(request, response){
 	//if there is no session username redirects to login
 	if(!username)
 		response.redirect("/")
-	//storing the user's folder path
-	var filepath = "./public/files/" + username + "/";
+	else{
+		//storing the user's folder path
+		var filepath = "./public/files/" + username + "/";
 
-	//downloading converted file and using callback to check for errors
-	 response.download(filepath + pdf_name + ".pdf", function(error){
-	 	if(error){
-	 		response.send("There was an error occured during downloading file");
-	 	}
+		//downloading converted file and using callback to check for errors
+	 	response.download(filepath + pdf_name + ".pdf", function(error){
+	 		if(error){
+	 			response.send("There was an error occured during downloading file");
+	 		}
 
-	 });
+	 	});
+
+	}
+	
 
 });
 
